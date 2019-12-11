@@ -60,6 +60,33 @@
 					"pathName": "pages/login/login",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "guide",
+					"pathName": "pages/guide/guide",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "initPage",
+					"pathName": "pages/initPage/initPage",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "lookForPwd",
+					"pathName": "pages/lookForPwd/lookForPwd",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "canvas",
+					"pathName": "pages/canvas/canvas",
+					"scene": null
 				}
 			]
 		}

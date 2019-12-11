@@ -2,7 +2,10 @@
   "pages": [
     "pages/login/login",
     "pages/initPage/initPage",
-    "pages/logs/logs"
+    "pages/guide/guide",
+    "pages/lookForPwd/lookForPwd",
+    "pages/logs/logs",
+    "pages/canvas/canvas"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,38 +1,11 @@
-// pages/initPage/initPage.js
+// pages/lookForPwd/lookForPwd.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    "value": 0,
-    "isMaleFocus": false,
-    "isFemaleFocus": false,
-    styles: [{
-      line: '#9e9e9e',
-      bginner: '#f5f5f5',
-      bgoutside: 'rgba(238,238,238,.5)',
-      lineSelect: '#e91e63',
-      font: '#404040'
-    }]
-  },
 
-  maleFocus: function(e) {
-    if(!this.data.isMaleFocus) {
-      this.setData({
-        "isMaleFocus": true
-      })
-    }
-  },
-
-  femaleFocus: function(e) {
-
-  },
-
-  bindValue: function(e) {
-    this.setData({
-      value: e.detail.value
-    })
   },
 
   /**

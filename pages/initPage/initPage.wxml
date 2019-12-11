@@ -1,2 +1,40 @@
-<!--pages/initPage/initPage.wxml-->
-<text>pages/initPage/initPage.wxml</text>
+<!-- 用户第一次登录该小程序时，要求用户初始化基本用户信息，后续登录不再经过该页面 -->
+<view class="box">
+  <view class="top">
+    <view class="titleInfo">
+      <text class="line1">你的性别是？</text>
+      <text class="line2">男女的体测考核标准不同，请正确填写</text>
+    </view>
+    <view class="sexChoice">
+      <view class="man">
+        <view class="circle" bindtap="maleFocus">
+          <image src="{{isMaleFocus ? '../element/male1.png' : '../element/male.png'}}"></image>
+        </view>
+        <text>男生</text>
+      </view>
+      <view class="female">
+       <view class="circle" bindtap="femaleFocus">
+          <image src="{{isFemaleFocus ? '../element/female1.png' : '../element/female.png'}}"></image>
+       </view>
+       <text>女生</text>
+      </view>
+    </view>
+  </view>
+  <view class="bottom">
+    <view class="titleInfo1">
+      <text>你的身高是？</text>
+    </view>
+    <view class="setH">
+      <view class="hInfo">
+        <text class="value">{{value}}</text>
+        <text class="unit">厘米</text>
+      </view>
+      <view class="wrap">
+      <scale min="100" max="230" int="{{true}}" step="10" fiexNum="165" single="10" h="95" active="center" styles="{{styles[0]}}" bindvalue="bindValue"></scale>
+      </view>
+      <view class="section_btn">
+        <button>下一步</button>
+      </view>
+    </view>
+  </view>
+</view>

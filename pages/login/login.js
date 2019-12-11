@@ -7,10 +7,6 @@ Page({
   data: {
     "login_condition": true,
     "register_condition": false,
-    "ac_placeholder_text": "请输入账号",
-    "pwd_placeholder_text": "请输入密码",
-    "acColor": "grey",
-    "pwdColor": "grey",
     "loginFocus": "focus",
     "registerFocus": "",
     "ac_condition": false,
@@ -21,8 +17,6 @@ Page({
     "seeOrNot_r2": true,
     "pwd_condition_r1": false,
     "pwd_condition_r2": false,
-    "windowHeight": "",
-    "windowWidth": "",
   },
   
   // login & register switch
@@ -140,15 +134,29 @@ Page({
     return RegExp.test(account);
   },
 
+  // 登录界面表单提交前的前端验证
   inputValidation(ac, pwd) {
     let code = 0;
 
     // 判断用户账号输入是否为空
     if (ac === "") {
-      this.setData({
-        acValue: "",
-        ac_placeholder_text: "输入账号不能为空",
-        acColor: "#e91e63"
+      wx.showToast({
+        title: '账号不能为空',
+        icon: 'none',
+        image: '../element/wrong.png',
+        duration: 2000
+      });      
+      code = 1;
+      return code;
+    }
+    
+    // 判断用户账号输入是否包含非法字符：非数字
+    if (!this.validationAct(ac)) {
+      wx.showToast({
+        title: '账号包含非法字符',
+        icon: 'none',
+        image: '../element/wrong.png',
+        duration: 2000
       });
       code = 1;
       return code;
@@ -156,10 +164,30 @@ Page({
 
     // 判断用户密码输入是否为空
     if (pwd === "") {
-      this.setData({
-        pwdVal: "",
-        pwd_placeholder_text: "输入密码不能为空",
-        pwdColor: "#e91e63"
+      wx.showToast({
+        title: '密码不能为空',
+        icon: 'none',
+        image: '../element/wrong.png',
+        duration: 2000
+      });
+      code = 1;
+      return code;
+    }
+
+    return code;
+  },
+
+  // 注册界面表单提交前的前端验证
+  r_inputValidation(ac, pwd, rpwd) {
+    let code = 0;
+
+    // 判断用户账号输入是否为空
+    if (ac === "") {
+      wx.showToast({
+        title: '账号不能为空',
+        icon: 'none',
+        image: '../element/wrong.png',
+        duration: 2000
       });
       code = 1;
       return code;
@@ -167,20 +195,56 @@ Page({
 
     // 判断用户账号输入是否包含非法字符：非数字
     if (!this.validationAct(ac)) {
-      this.setData({
-        acValue: "",
-        ac_placeholder_text: "账号包含非法字符",
-        acColor: "#e91e63"
+      wx.showToast({
+        title: '账号包含非法字符',
+        icon: 'none',
+        image: '../element/wrong.png',
+        duration: 2000
       });
       code = 1;
       return code;
+    }
+
+    // 判断用户密码输入是否为空
+    if (pwd === "") {
+      wx.showToast({
+        title: '密码不能为空',
+        icon: 'none',
+        image: '../element/wrong.png',
+        duration: 2000
+      });
+      code = 1;
+      return code;
+    }
+
+    // 判断用户二次密码输入是否为空
+    if (rpwd === "") {
+      wx.showToast({
+        title: '请再次输入密码',
+        icon: 'none',
+        image: '../element/wrong.png',
+        duration: 2000
+      });
+      code = 1;
+      return code;
+    }
+
+    // 判断用户两次输入的密码是否一致
+    if(pwd !== rpwd) {
+      wx.showToast({
+        title: '密码输入不一致',
+        icon: 'none',
+        image: '../element/wrong.png',
+        duration: 2000
+      });
+      code = 1;
+      return code;  
     }
     return code;
   },
 
   // 向服务器发送用户账号密码，实现登录验证
   Login_formSubmit: function(e) {
-    var that = this;
     let account = e.detail.value.account;
     let password = e.detail.value.password;
     let res = this.inputValidation(account, password);
@@ -201,7 +265,7 @@ Page({
       },
       success: function (res) {
         console.log("succeed");
-        console.log(res.data.code);
+        console.log(res);
         // 根据res.code的值做不同的处理
         // 身份信息核实正确，wx.reLaunch页面跳转
         if (res.data.code === 0) {
@@ -249,20 +313,77 @@ Page({
     })
   },
 
+  // 向服务器发送将注册的用户账号和密码，完成注册验证
+  register_formSubmit: function(e) {
+    let username = e.detail.value.register_ac;
+    let password = e.detail.value.register_pwd;
+    let repassword = e.detail.value.register_rpwd;
+
+    let res = this.r_inputValidation(username, password, repassword);
+    if (res == 1)
+      return;
+    
+    wx.request({
+      url: 'http://118.31.51.167:8080/minipg/register',
+      method: 'POST',
+      header: {
+        // 'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        'username': username,
+        'password': password
+      },
+      success: function (res) {
+        console.log("succeed");
+        console.log(res.data.code);
+        // 根据res.code的值做不同的处理
+        if (res.data.code === 0) {
+          wx.showToast({
+            title: '注册成功',
+            icon: "success",
+            duration: 2000
+          });
+        }
+        else {
+          // res.data.code === 1
+          // username exist
+          wx.showToast({
+            title: '用户名已存在',
+            icon: 'none',
+            image: '../element/wrong.png',
+            duration: 2000
+          });
+        }
+      },
+      fail: function () {
+        console.log("fail");
+      },
+      complete: function () {
+        console.log("completed");
+      }
+    })
+
+  },
+
+  // 查看使用指南
+  seekInfo: function(e) {
+    wx.reLaunch({
+      url: '../guide/guide',
+    })
+  },
+
+  // 找回密码
+  lookForPwd: function(e) {
+    wx.reLaunch({
+      url: '../lookForPwd/lookForPwd',
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    wx.getSystemInfo({
-      success: function(res) {
-        that.setData({
-          "windowHeight": res.windowHeight,
-          "windowWidth": res.windowWidth
-        });
-      },
-    });
+
   },
 
   /**

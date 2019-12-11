@@ -1,1 +1,148 @@
 /* pages/initPage/initPage.wxss */
+.box {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, .8);
+}
+
+.top {
+  width: 100%;
+  height: 50%;
+}
+
+.bottom {
+  width: 100%;
+  height: 50%;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+}
+
+.top .titleInfo {
+  width: 100%;
+  height: 30%;
+  margin-top: 50rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.top .titleInfo  .line1 {
+  color: white;
+  font-weight: bold;
+  font-size: 35rpx;
+}
+
+.top .titleInfo .line2 {
+  margin-top: 10rpx;
+  color: #ccc;
+  /* font-weight: lighter; */
+  font-size: 25rpx;
+}
+
+.top .sexChoice {
+  width: 100%;
+  height: 70%;
+  margin-top: -100rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.top .sexChoice .circle {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+  background-color: #616161;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.top .sexChoice .circle image {
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.top .sexChoice .man,
+.top .sexChoice .female {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.top .sexChoice .man {
+  margin-right: 100rpx;
+}
+
+.top .sexChoice .man text,
+.top .sexChoice .female text {
+  color: #fff;
+  font-weight: bold;
+  margin-top: 20rpx;
+}
+
+
+.bottom .titleInfo1 {
+  width: 100%;
+  height: 20%;
+  /* background-color: #eee; */
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.bottom .titleInfo1 text {
+  color: white;
+  font-weight: bold;
+  font-size: 35rpx;
+}
+
+.bottom .setH {
+  width: 100%;
+  height: 50%;
+}
+
+.bottom .setH .hInfo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25rpx;
+}
+
+.bottom .setH text {
+  color: #e91e63;
+  font-weight: bold;
+}
+
+.bottom .setH .value {
+  font-size: 70rpx;
+}
+
+.bottom .setH .unit {
+  font-size: 30rpx;
+  padding-top: 26rpx;
+}
+
+.bottom .section_btn {
+  width: 100%;
+  height: 30%;
+  margin-top: 60rpx;
+}
+
+.bottom .section_btn button {
+  width: 80%;
+  margin: 50rpx auto;
+  background-color: #e91e63;
+  color: white;
+  padding: 20rpx;
+  border-radius: 50rpx;
+}
+
+
