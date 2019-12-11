@@ -1,0 +1,67 @@
+<!--pages/login/login.wxml-->
+<view class="box">
+  <view class="content">
+    <view class="top">
+      <image src="../element/title.png"></image>
+    </view>
+    <view class="mid">
+      <view class="info">
+        <text class="login {{loginFocus}}" bindtap="chooseLogin">登录</text>
+        <text>/</text>
+        <text class="register {{registerFocus}}" bindtap="chooseRegister">注册</text>
+      </view>
+      <view class="form form_login" wx:if="{{login_condition}}">
+        <form bindsubmit='Login_formSubmit'>
+          <view class="section_input">
+            <input name="account" type="text" placeholder="{{ac_placeholder_text}}" placeholder-style="color: {{acColor}}" bindfocus="inputFocus" value="{{acValue}}"></input>
+            <image wx:if="{{ac_condition}}" src="../element/del3.png" bindtap="acClear"></image>
+          </view>
+          <view class="section_input">
+            <input name="password" password="{{seeOrNot}}" placeholder="{{pwd_placeholder_text}}" placeholder-style="color: {{pwdColor}}" bindfocus="pwdFocus"></input>
+            <image wx:if="{{pwd_condition}}" src="{{!seeOrNot?'../element/open_eyes.png':'../element/close_eyes.png'}}" bindtap="changeSee"></image>
+          </view>
+          <view class="section_btn">
+            <button form-type="submit">登录</button>
+          </view>
+        </form>
+      </view>
+      <view class="form form_register" wx:if="{{register_condition}}">
+        <form bindsubmit='register_formSubmit'>
+          <view class="section_input">
+            <input type="text" placeholder="账号"  bindfocus="inputFocus" value="{{acValue}}"></input>
+            <image src="../element/del3.png" wx:if="{{ac_condition}}" bindtap="acClear"></image>
+          </view>
+          <view class="section_input">
+            <input password="{{seeOrNot_r1}}" placeholder="密码" bindfocus="pwdFocus_r1"></input>
+            <image wx:if="{{pwd_condition_r1}}" src="{{!seeOrNot_r1?'../element/open_eyes.png':'../element/close_eyes.png'}}" bindtap="changeSee_r1"></image>
+          </view>
+          <view class="section_input">
+            <input password="{{seeOrNot_r2}}" placeholder="确认密码" bindfocus="pwdFocus_r2"></input>
+            <image wx:if="{{pwd_condition_r2}}" src="{{!seeOrNot_r2?'../element/open_eyes.png':'../element/close_eyes.png'}}" bindtap="changeSee_r2"></image>
+          </view>
+          <view class="section_btn">
+            <button>注册</button>
+          </view>
+        </form>
+      </view>
+      <!-- <view class="feedbackInfo" style="position: absolute; left:{{windowWidth/2-50}}px; top:{{windowHeight/2-80}}px;" >
+        <view class="acNotFound" wx:if="{{isNotFound}}" style="opacity: {{acOpacity}}">
+          <image src="../element/wrong.png"></image>
+          <text>账号不存在</text>
+        </view>
+        <view class="pwdWrong" wx:if="{{true}}" style="opacity: {{pwdOpacity}}">
+          <image src="../element/wrong.png"></image>
+          <text>密码错误</text>
+        </view>
+      </view> -->
+    </view>
+    <view class="bottom">
+      <view class="guide">
+        <text>使用提示</text>
+      </view>
+      <view class="lookfor">
+        <text>找回密码</text>
+      </view>
+    </view>
+  </view>
+</view>
